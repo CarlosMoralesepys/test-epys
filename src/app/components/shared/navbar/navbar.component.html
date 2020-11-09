@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span class="crsr-pointer" routerLink="home">Pokemons</span>
+        <div fxFlex="2"></div>
+        <div>
+            <input placeholder="Buscar..." #textFind type="text" (keyup)="findFn(textFind.value)" />
+        </div>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon crsr-pointer" routerLink="home" matTooltip="Pokemons" aria-hidden="false" aria-label="Example user verified icon">skip_previous
+        </mat-icon>
+        <mat-icon class="example-icon crsr-pointer" routerLink="home" aria-hidden="false" aria-label="Example user verified icon">
+            games
+        </mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>

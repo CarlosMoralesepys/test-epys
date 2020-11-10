@@ -14,7 +14,7 @@
       <mat-card-title fxFlex>{{ item?.name | ucwords }}</mat-card-title>
     </mat-card-header>
     <mat-chip-list class="chips-mrgin" *ngIf="!pokemonService.loadingState">
-      <mat-chip class="red-my-color">{{ item.id || "noid" }}</mat-chip>
+      <mat-chip class="red-my-color">{{ item.id || 'noid' }}</mat-chip>
       <mat-chip
         [ngClass]="item.color?.name || 'noname'"
         class="my-color"
@@ -34,13 +34,20 @@
     <!--  <mat-card-subtitle>Dog Breed</mat-card-subtitle>  -->
 
     <mat-chip-list class="chips-mrgin" *ngIf="!pokemonService.loadingState">
-      <mat-chip>
+      <mat-chip (click)="linkToPoke(item.evolution_chain.chain.species)">
         {{ item?.evolution_chain?.chain?.species?.name }}
       </mat-chip>
-      <mat-chip>
+      <mat-chip
+        (click)="linkToPoke(item.evolution_chain.chain.evolves_to[0].species)"
+      >
         {{ item?.evolution_chain?.chain?.evolves_to[0]?.species?.name }}
       </mat-chip>
       <mat-chip
+        (click)="
+          linkToPoke(
+            item.evolution_chain.chain.evolves_to[0].evolves_to[0].species
+          )
+        "
         *ngIf="
           item.evolution_chain.chain.evolves_to &&
           item.evolution_chain.chain.evolves_to.length > 0 &&

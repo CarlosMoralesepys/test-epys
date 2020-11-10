@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
-import { BehaviorSubject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class PokemonService {
   subject = new BehaviorSubject(null);
@@ -27,7 +27,7 @@ export class PokemonService {
     if (pokemon) {
       this.selectedPokemon.next(pokemon);
     } else {
-      throw new Error("in setter function");
+      throw new Error('in setter function');
     }
   }
 
@@ -42,10 +42,10 @@ export class PokemonService {
 
   getAllPokemons() {
     // limit 25
-    return this.getQueryForResponse("pokemon?offset=0&limit=25").pipe(
+    return this.getQueryForResponse('pokemon?offset=0&limit=25').pipe(
       map((data) => {
         this.loadingState = false;
-        return data["results"];
+        return data['results'];
       })
     );
   }
@@ -69,6 +69,8 @@ export class PokemonService {
   }
 
   getEvolutionsOfPokemons(item: any) {
+    console.log('darwin watterson 1', this.subject.getValue());
+    console.log('darwin watterson 2', this.selectedPokemon.getValue());
     const url = item.evolution_chain.url;
     return this.httpClient.get(url).pipe(
       map((data) => {
